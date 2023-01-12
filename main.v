@@ -1,15 +1,17 @@
 $if linux {
 	#flag -DTRAY_APPINDICATOR=1 $(shell pkg-config --cflags appindicator3-0.1) $(shell pkg-config --libs appindicator3-0.1)
+	#include "tray_linux.c"
 }
 $if windows {
 	#flag -DTRAY_WINAPI=1
+	#include "tray_windows.c"
 }
 $if macos {
 	#flag -DTRAY_APPKIT=1 -framework Cocoa
+	#include "tray_darwin.m"
 }
 
 #flag -I. -Wall -Wextra -std=c99
-#include "tray.h"
 
 struct C.tray {
 	icon &u8
